@@ -14,30 +14,39 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: PageIndicatorContainer(
-        length: 6,
-        padding: EdgeInsets.only(bottom: 100),
-        indicatorColor: Colors.grey,
-        indicatorSelectorColor: Theme.of(context).secondaryHeaderColor,
-        child: PageView(
-          controller: PageController(initialPage: _index),
-          onPageChanged: (index){
-            setState(() {
-              _index = index;
-            });
-          },
-          scrollDirection: Axis.horizontal,
-          children: <Widget>[
-            showFirstScreen(context),
-            showSecondScreen(context),
-            showThirdScreen(context),
-            showFourthScreen(context),
-            showFifthScreen(context),
-            showSixthScreen(context),
-          ],
-        ),
-      ),
-      bottomSheet: showBottom(context,_index),
+      body: Stack(
+        children: <Widget>[
+          PageIndicatorContainer(
+            length: 6,
+            padding: EdgeInsets.only(bottom: 100),
+            indicatorColor: Colors.grey,
+            indicatorSelectorColor: Theme.of(context).secondaryHeaderColor,
+            child: PageView(
+              controller: PageController(initialPage: _index),
+              onPageChanged: (index){
+                setState(() {
+                  _index = index;
+                });
+              },
+              scrollDirection: Axis.horizontal,
+              children: <Widget>[
+                showFirstScreen(context),
+                showSecondScreen(context),
+                showThirdScreen(context),
+                showFourthScreen(context),
+                showFifthScreen(context),
+                showSixthScreen(context),
+              ],
+            ),
+          ),
+          Column(
+            children: <Widget>[
+              Expanded(child: SizedBox(),),
+              showBottom(context,_index)
+            ],
+          )
+        ],
+      )
     );
   }
 
@@ -49,7 +58,7 @@ class _WelcomePageState extends State<WelcomePage> {
             Container(
               width: double.infinity,
               height: 120,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
@@ -87,7 +96,7 @@ class _WelcomePageState extends State<WelcomePage> {
             Container(
               width: double.infinity,
               height: 120,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
@@ -125,7 +134,7 @@ class _WelcomePageState extends State<WelcomePage> {
             Container(
               width: double.infinity,
               height: 120,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
@@ -204,7 +213,7 @@ class _WelcomePageState extends State<WelcomePage> {
             Container(
               width: double.infinity,
               height: 120,
-              color: Theme.of(context).secondaryHeaderColor,
+              color: Theme.of(context).primaryColor,
             ),
             Padding(
               padding: const EdgeInsets.only(top: 50),
@@ -310,7 +319,7 @@ showFirstScreen(BuildContext context){
           Container(
             width: double.infinity,
             height: 120,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: Theme.of(context).primaryColor,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50),
@@ -377,7 +386,7 @@ showSecondScreen(BuildContext context){
           Container(
             width: double.infinity,
             height: 120,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: Theme.of(context).primaryColor,
           ),
           Padding(
             padding: const EdgeInsets.only(top: 50),
